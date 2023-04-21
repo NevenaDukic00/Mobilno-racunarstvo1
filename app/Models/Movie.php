@@ -12,4 +12,8 @@ class Movie extends Model
     {
         return $this->belongsTo(Genre::class);
     }
+    public function ticket()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }
