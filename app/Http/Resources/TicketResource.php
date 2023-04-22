@@ -16,7 +16,7 @@ class TicketResource extends JsonResource
     {
         return [
             'id'=>$this->resource->id,
-           'amount'=>$this->resource->amount,
+           'price'=>$this->resource->price,
            'user'=>new UserResource($this->resource->user),
            'movie'=>new MovieResource($this->resource->movie),
            'seat_number'=>$this->resource->seat_number

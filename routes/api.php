@@ -25,5 +25,6 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/movies', [MovieController::class, 'index']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/tickets', [TicketController::class, 'index']);
+    Route::get('/tickets/{id}', [TicketController::class, 'index']);
+    Route::post('/tickets', [TicketController::class, 'store']);
 });

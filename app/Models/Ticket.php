@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
 {
+    protected $fillable = [
+        'price',
+        'movie_id',
+        'seat_number',
+        'user_id',
+    ];
     use HasFactory;
     public function movie()
     {
