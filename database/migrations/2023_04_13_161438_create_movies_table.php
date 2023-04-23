@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->foreignId('genre_id');
             $table->string('description');
-            $table->date('date');
+            $table->timestamp('date');
             $table->string('duration');
             $table->string('image');
             $table->double('price');
