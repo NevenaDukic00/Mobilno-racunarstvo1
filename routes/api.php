@@ -26,5 +26,7 @@ Route::get('/movies', [MovieController::class, 'index']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/tickets/{id}', [TicketController::class, 'index']);
+    Route::get('/tickets', [TicketController::class, 'index1']);
     Route::post('/tickets', [TicketController::class, 'store']);
+    Route::resource('/movies', MovieController::class)->only(['update', 'destroy']);
 });

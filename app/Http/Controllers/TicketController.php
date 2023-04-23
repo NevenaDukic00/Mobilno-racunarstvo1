@@ -16,10 +16,15 @@ class TicketController extends Controller
     {
        
         $tickets = Ticket::get()->where('movie_id',$id);
-        // $tickets = Ticket::get()->where('user_id', Auth::user()->id);
-        // if (sizeof($tickets) == 0) {
-        //     return response()->json(['response' => "You don't have any ticket ordered!"]);
-        // }
+
+        return TicketResource::collection($tickets);
+
+    }
+    public function index1()
+    {
+       
+        $tickets = Ticket::get()->where('user_id', Auth::user()->id);
+
         return TicketResource::collection($tickets);
 
     }
