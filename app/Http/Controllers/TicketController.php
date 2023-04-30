@@ -34,9 +34,8 @@ class TicketController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'price' => 'required',
-                'movie_id'=>'required',
-                'seat_number'=>'required',
+                'amount' => 'required',
+                'movie_id'=>'required'
             ]
         );
        
@@ -48,14 +47,13 @@ class TicketController extends Controller
     
         
         $ticket = Ticket::create([
-            'price' => $request->price,
+            'amount' => $request->amount,
             'user_id' => Auth::id(),
-            'movie_id' => $request->movie_id,
-            'seat_number' => $request->seat_number,
+            'movie_id' => $request->movie_id
         ]);
         
         
-        return response()->json(['response' => 'You have successfully created new ticket!']);
+        return response()->json(['response' => 'success!']);
     
     }
 }
