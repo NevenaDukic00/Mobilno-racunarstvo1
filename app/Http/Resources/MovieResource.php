@@ -23,6 +23,7 @@ class MovieResource extends JsonResource
             'duration'=>$this->resource->duration,
             'image'=>$this->resource->image,
             'rating'=>$this->resource->rating,
+            'amount'=>$this->resource->amount,
             'genre'=>new GenreResource($this->resource->genre)
           
         ];

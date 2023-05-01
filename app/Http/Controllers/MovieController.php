@@ -7,6 +7,7 @@ use App\Models\Movie;
 use App\Http\Resources\MovieResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 class MovieController extends Controller
 {
     public function index()
@@ -15,6 +16,28 @@ class MovieController extends Controller
         return MovieResource::collection($movie);
     }
 
+    public function update(Request $request, Movie $movie)
+    {
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'amount' => 'required'
+
+            ]
+        );
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+
+        $movie->amount = $request->amount;
+
+        $movie->save();
+
+
+        return response()->json(['response' => 'You have successfully changed movie!']);
+    }
     public function destroy($movieid)
     {
 
