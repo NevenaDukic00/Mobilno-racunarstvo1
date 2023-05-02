@@ -8,12 +8,52 @@ use App\Http\Resources\MovieResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+
 class MovieController extends Controller
 {
     public function index()
     {
         $movie = Movie::all();
         return MovieResource::collection($movie);
+    }
+
+    public function add(Request $request)
+    {
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'title' => 'required|string|max:255',
+                'genre_id' => '',
+                'description' => 'required|string|max:255',
+                'date' => 'required',
+                'duration' => 'required',
+                'image' => 'required',
+                'price' => 'required',
+                'rating' => 'required',
+                'amount' => ''
+
+            ]
+        );
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+
+
+        $movie = Movie::create([
+            'title' => $request->title,
+            'genre_id' => $request->genre_id,
+            'description' => $request->description,
+            'date' => $request->date,
+            'duration' => $request->duration,
+            'image' => $request->image,
+            'price' => $request->price,
+            'rating' => $request->rating,
+            'amount' => 0
+        ]);
+
+        return response()->json(['success' => 'true', 'response' => 'Movie successfully added!']);
     }
 
     public function update(Request $request, Movie $movie)
@@ -49,7 +89,7 @@ class MovieController extends Controller
         if ($m == null) {
             return response()->json(['response' => 'Movie does not exsist!']);
         }
-       
+
         if ($m->delete()) {
             return response()->json(['response' => 'success']);
         } else {
