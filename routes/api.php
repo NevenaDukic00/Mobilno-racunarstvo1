@@ -22,7 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::put('/moviesU', [MovieController::class, 'edit']);
 Route::post('/movies', [MovieController::class, 'add']);
+
 Route::get('/movies', [MovieController::class, 'index']);
 Route::get('/genres', [GenreController::class, 'index']);
 

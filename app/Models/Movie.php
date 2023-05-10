@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Movie extends Model
 {
-    protected $fillable = ['title', 'genre_id', 'description', 'price', 'image', 'date', 'duration', 'rating', 'amount'];
+    //protected $fillable = ['title', 'genre_id', 'description', 'price', 'image', 'date', 'duration', 'rating', 'amount'];
+    protected $guarded = [];
 
     use HasFactory;
     public function genre()

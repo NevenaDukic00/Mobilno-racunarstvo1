@@ -56,6 +56,33 @@ class MovieController extends Controller
         return response()->json(['success' => 'true', 'response' => 'Movie successfully added!']);
     }
 
+    public function edit(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'id' => 'required',
+                'price' => 'required'
+
+
+            ]
+        );
+
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+
+        $movie = Movie::find($request->id);
+        //$movie->title = $movie->title;
+        $movie->price = $request->price;
+
+        $movie->save();
+
+
+        return response()->json(['success' => 'true', 'response' => 'You have successfully changed movie price!']);
+    }
+
     public function update(Request $request, Movie $movie)
     {
 
@@ -70,6 +97,7 @@ class MovieController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors());
         }
+
 
         $movie->amount = $request->amount;
 
